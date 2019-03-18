@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 服务器响应信息类
- *
- * @author gaomp
+ * Author : GarryLuo
+ * Date  : 2018/8/21 20:15
+ * Description : 服务器相应信息类
  */
 @Data
 public class SysResult {

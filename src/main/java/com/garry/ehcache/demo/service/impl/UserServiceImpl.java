@@ -1,7 +1,8 @@
-package com.garry.ehcache.demo.service;
+package com.garry.ehcache.demo.service.impl;
 
 import com.garry.ehcache.demo.dao.UserMapper;
 import com.garry.ehcache.demo.entity.User;
+import com.garry.ehcache.demo.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
