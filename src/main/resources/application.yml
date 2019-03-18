@@ -1,0 +1,27 @@
+# \u7AEF\u53E3
+server:
+  port: 8080
+spring:
+  http:
+    encoding:
+      charset: utf-8
+      force: true
+      enabled: true
+# \u914D\u7F6Eehcache\u7F13\u5B58
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:ehcache.xml
+# \u6570\u636E\u5E93
+  datasource:
+    url: jdbc:mysql://localhost:3306/jpa?useSSL=false
+    username: root
+    password: admin
+    driver-class-name: com.mysql.jdbc.Driver
+# mybatis
+mybatis:
+  type-aliases-package: com.garry.ehcache.demo.entity
+  mapper-locations: mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.garry.ehcache.demo.dao.UserMapper">
+    <sql id="sql">
+        id,user_name,age
+    </sql>
+    <select id="getUserList" parameterType="com.garry.ehcache.demo.entity.User"
+            resultType="com.garry.ehcache.demo.entity.User">
+        SELECT
+        <include refid="sql"/>
+        from user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name like concat('%',#{userName},'%')
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+        </where>
+    </select>
+    <insert id="addUser" parameterType="com.garry.ehcache.demo.entity.User">
+        <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into
+        user(user_name,age)
+        VALUES(#{userName},#{age})
+    </insert>
+</mapper>
