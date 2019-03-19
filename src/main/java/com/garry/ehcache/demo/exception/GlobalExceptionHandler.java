@@ -28,6 +28,7 @@ public class GlobalExceptionHandler implements HandlerExceptionResolver {
     @Nullable
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, @Nullable Object o, Exception e) {
+        logger.error(e.getMessage(), e);
         if (e instanceof DIYException) {
             exceptionResponse(response, SysResult.fail(SysCode.DIY_EXCEPTION));
         } else {

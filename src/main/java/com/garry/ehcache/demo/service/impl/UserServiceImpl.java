@@ -1,9 +1,11 @@
 package com.garry.ehcache.demo.service.impl;
 
+import com.garry.ehcache.demo.cache.CacheRemove;
 import com.garry.ehcache.demo.dao.UserMapper;
 import com.garry.ehcache.demo.entity.User;
 import com.garry.ehcache.demo.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @CacheRemove(value = "user", key = {"getUserList*"})
     public void addUser(User user) {
         userMapper.addUser(user);
     }

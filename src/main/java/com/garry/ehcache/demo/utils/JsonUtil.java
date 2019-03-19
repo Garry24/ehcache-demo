@@ -50,7 +50,6 @@ public class JsonUtil {
      * @return
      */
     public static <T> T json2Object(String jsonStr, Class<T> valueType) throws Exception {
-
         try {
             return mapper.readValue(jsonStr, valueType);
         } catch (Exception e) {
