@@ -1,6 +1,8 @@
 package com.garry.ehcache.demo.exception;
 
 import com.garry.ehcache.demo.commons.SysCode;
+import com.garry.ehcache.demo.commons.SysResult;
+import com.garry.ehcache.demo.utils.JsonUtil;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,21 +28,19 @@ public class GlobalExceptionHandler implements HandlerExceptionResolver {
     @Nullable
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, @Nullable Object o, Exception e) {
-        String msg = "";
         if (e instanceof Exception) {
-            msg = SysCode.EXCEPTION.getMessage();
+            exceptionResponse(response, SysResult.fail(SysCode.EXCEPTION));
         }
-        exceptionResponse(response, msg);
         ModelAndView modelAndView = new ModelAndView();
         return modelAndView;
     }
 
-    protected void exceptionResponse(HttpServletResponse response, String msg) {
+    protected void exceptionResponse(HttpServletResponse response, SysResult sysResult) {
         PrintWriter writer = null;
         try {
             response.setContentType("application/json");
             writer = response.getWriter();
-            writer.write(msg);
+            writer.write(JsonUtil.object2Json(sysResult));
         } catch (Exception e) {
             logger.error("exceptionResponse error", e);
         } finally {
