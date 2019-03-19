@@ -8,7 +8,8 @@ package com.garry.ehcache.demo.commons;
 public enum SysCode {
 
     SUCCESS("0000", "成功"),
-    EXCEPTION("1001", "系统异常");
+    EXCEPTION("1001", "系统异常"),
+    DIY_EXCEPTION("1002", "自定义系统异常");
 
     private String code;
 

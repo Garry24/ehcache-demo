@@ -28,11 +28,12 @@ public class GlobalExceptionHandler implements HandlerExceptionResolver {
     @Nullable
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, @Nullable Object o, Exception e) {
-        if (e instanceof Exception) {
+        if (e instanceof DIYException) {
+            exceptionResponse(response, SysResult.fail(SysCode.DIY_EXCEPTION));
+        } else {
             exceptionResponse(response, SysResult.fail(SysCode.EXCEPTION));
         }
-        ModelAndView modelAndView = new ModelAndView();
-        return modelAndView;
+        return new ModelAndView();
     }
 
     protected void exceptionResponse(HttpServletResponse response, SysResult sysResult) {
